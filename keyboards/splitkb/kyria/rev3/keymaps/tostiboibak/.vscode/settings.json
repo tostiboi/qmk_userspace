@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "modular_bongocat.h": "c",
+        "stdio.h": "c",
+        "animation.h": "c"
+    }
+}

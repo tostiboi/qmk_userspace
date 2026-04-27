@@ -1,7 +1,8 @@
 OLED_ENABLE = yes
 ENCODER_ENABLE = yes       # Enables the use of one or more encoders
 RGB_MATRIX_ENABLE = yes    # Use RGB Matrix (required for rev3 underglow)
-RGBLIGHT_ENABLE = no       # Disable legacy RGBLIGHT to prevent right-half serial crash
+RGBLIGHT_ENABLE = yes # Enables QMK's RGB code
+WS2812_DRIVER = vendor # Use the RP2040's PIO interface
 WPM_ENABLE = yes
 MOUSEKEY_ENABLE = yes
 EXTRAKEY_ENABLE = yes

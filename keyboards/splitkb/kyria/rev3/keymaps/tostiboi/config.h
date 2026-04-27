@@ -17,28 +17,30 @@
 #pragma once
 
 #ifdef RGB_MATRIX_ENABLE
-#undef WS2812_DI_PIN
-#define WS2812_DI_PIN 25
-#undef RGBLIGHT_LED_COUNT
-#define RGBLIGHT_LED_COUNT 2
-#undef RGBLED_SPLIT
-#define RGBLED_SPLIT {1, 1}
-#    define ENABLE_RGB_MATRIX_BREATHING
-#    define ENABLE_RGB_MATRIX_RAINBOW_MOOD
-#    define ENABLE_RGB_MATRIX_RAINBOW_SWIRL
-#    define ENABLE_RGB_MATRIX_SNAKE
-#    define ENABLE_RGB_MATRIX_KNIGHT
-#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
-#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE
-#    define ENABLE_RGB_MATRIX_TWINKLE
-#    define RGB_MATRIX_HUE_STEP 8
-#    define RGB_MATRIX_SAT_STEP 8
-#    define RGB_MATRIX_VAL_STEP 8
-#    ifndef RGB_MATRIX_MAXIMUM_BRIGHTNESS
-#    	define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150
-#    endif
+    // Define the split LED counts for RGB Matrix.
+    // Change these numbers if you don't have 35 LEDs populated per side.
+
+    // Animation Enables
+    #define ENABLE_RGB_MATRIX_BREATHING
+    #define ENABLE_RGB_MATRIX_RAINBOW_MOOD
+    #define ENABLE_RGB_MATRIX_RAINBOW_SWIRL
+    #define ENABLE_RGB_MATRIX_SNAKE
+    #define ENABLE_RGB_MATRIX_KNIGHT
+    #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
+    #define ENABLE_RGB_MATRIX_SOLID_REACTIVE
+    #define ENABLE_RGB_MATRIX_TWINKLE
+
+    // RGB Matrix Settings
+    #define RGB_MATRIX_HUE_STEP 8
+    #define RGB_MATRIX_SAT_STEP 8
+    #define RGB_MATRIX_VAL_STEP 8
+
+    #ifndef RGB_MATRIX_MAXIMUM_BRIGHTNESS
+        #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150
+    #endif
 #endif
 
+// Encoder and Key Settings
 // Most tactile encoders have detents every 4 stages
 #define ENCODER_RESOLUTION 4
 #define FORCE_NKRO
@@ -49,4 +51,3 @@
 #define COMBO_COUNT 16
 #define COMBO_TERM 60
 #define COMBO_VARIABLE_LEN
-

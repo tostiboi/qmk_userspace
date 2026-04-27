@@ -56,6 +56,13 @@ enum layer_names {
     _EXT,
 };
 
+void keyboard_post_init_user(void) {
+    // Force RGB Matrix on so we can see it ignoring EEPROM
+    rgb_matrix_enable_noeeprom();
+    rgb_matrix_sethsv_noeeprom(HSV_RED); // Set to Red
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+}
+
 // Layer Mode aliases
 #define BSP_EXT LT(_EXT,KC_BSPC)
 #define OSYM OSL(_SYM)
@@ -125,14 +132,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [Sym] = LAYOUT(
     KC_NO,KC_LCBR, KC_AMPR, KC_ASTR,  KC_LPRN, KC_RCBR,                                   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
     KC_NO,KC_COLN, KC_DLR,  KC_PERC,  KC_CIRC, KC_PLUS,                                   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-    KC_NO,KC_TILD, KC_EXLM, KC_AT,   KC_HASH,  KC_PIPE, KC_NO,    KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+    KC_NO,KC_TILD, KC_EXLM, KC_AT,   KC_HASH,  KC_PIPE, _______,          _______,   _______,   _______,  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
                             KC_NO,    KC_NO,   KC_LPRN, KC_RPRN,  KC_UNDS,  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
     ),
 
   [Num] = LAYOUT(
     KC_NO, KC_LBRC,  KC_7,   KC_8,   KC_9,   KC_RBRC,                                     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
     KC_NO, KC_SCLN,  KC_4,   KC_5,   KC_6,   KC_EQL,                                      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-    KC_NO, KC_GRV,   KC_1,   KC_2,   KC_3,   KC_BSLS,  KC_NO,    KC_NO,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+    KC_NO, KC_GRV,   KC_1,   KC_2,   KC_3,   KC_BSLS,  _______,          _______,   _______,   _______,  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
                              KC_NO,  KC_NO,  KC_DOT,   KC_0,     KC_MINS,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
     ),
 
@@ -188,7 +195,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_EXT] = LAYOUT( \
-/*I recommend adding a TO() that leads to your two-handed layer to the first and last key in the next line of code if you
+/*I recommend adding a TO() that leads to your two-handed l  f      = ayer to the first and last key in the next line of code if you
 are adding this keymap to a two-handed keymap. It is left blank for this purpose.*/
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       DF(0), KC_WBAK, KC_HOME,   KC_UP,  KC_END, KC_WFWD,                      KC_WFWD, KC_HOME,   KC_UP,  KC_END, KC_WBAK, TO(1),\
@@ -257,27 +264,51 @@ bool oled_task_user(void) {
         switch (get_highest_layer(layer_state|default_layer_state)) {
             case Base:
                 oled_write_P(PSTR("base\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_RED);
                 break;
             case Media:
                 oled_write_P(PSTR("media\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_GREEN);
                 break;
             case Nav:
                 oled_write_P(PSTR("nav\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_BLUE);
                 break;
             case Mouse:
                 oled_write_P(PSTR("mouse\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_YELLOW);
                 break;
             case Sym:
                 oled_write_P(PSTR("sym\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_MAGENTA);
                 break;
             case Num:
                 oled_write_P(PSTR("num\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_CYAN);
                 break;
             case Func:
                 oled_write_P(PSTR("func\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_WHITE);
                 break;
             case GUI:
                 oled_write_P(PSTR("gui\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_PURPLE);
+                break;
+            case _FROG:
+                oled_write_P(PSTR("frog\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_SPRINGGREEN);
+                break;
+            case _SYM:
+                oled_write_P(PSTR("frog sym\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_PINK);
+                break;
+            case _NUM:
+                oled_write_P(PSTR("frog num\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_TURQUOISE);
+                break;
+            case _EXT:
+                oled_write_P(PSTR("frog ext\n"), false);
+                rgb_matrix_sethsv_noeeprom(HSV_ORANGE);
                 break;
         }
 
